@@ -43,7 +43,7 @@ var api = {
     },
 
     addParticipant(eventId ,email){
-        var url = baseUrl + eventId + '/people/' + email;
+        var url = baseUrl + '/' + eventId + '/people/' + email;
 
         return fetch(url, { method: 'post' }).then((res) => res.json());
     },

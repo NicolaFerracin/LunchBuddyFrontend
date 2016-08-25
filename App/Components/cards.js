@@ -7,7 +7,9 @@ let Card = React.createClass({
   render() {
     return (
       <View style={[styles.card]}>
-        <Text>{this.props.name}</Text>
+        <Image style={styles.image} source={{uri: this.props.icon}} />
+        <Text style={styles.title}>{this.props.name}</Text>
+        <Text style={styles.description}>{this.props.rating}</Text>
       </View>
     )
   }
@@ -45,5 +47,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 300,
     height: 300
+  },
+  image: {
+    width: 200,
+    height: 200
+  },
+  title: {
+    fontSize: 25,
+    textAlign: 'center'
+  },
+  descripion: {
+    fontSize: 18,
+    textAlign: 'center'
   }
 })

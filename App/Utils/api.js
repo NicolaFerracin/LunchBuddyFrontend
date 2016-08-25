@@ -20,7 +20,13 @@ var api = {
           return Promise.all(res.events.map((event) => {
               return api
                 .getPlaceDetails(event.Place)
-                .then(location => {event.location = location; return event;})
+                .then(location => {
+                  return api.getParticipants(event.ID).then(function(res) {
+                    event.peoples = res.People
+                    event.location = location;
+                    return event;
+                  })
+                })
           }))
       });
     },
@@ -30,7 +36,7 @@ var api = {
     },
 
     getParticipants(eventId){
-        var url = baseUrl + eventId + '/people/';
+        var url = baseUrl + '/' + eventId + '/people';
 
         return fetch(url, { method: 'get' }).then((res) => res.json());
     },

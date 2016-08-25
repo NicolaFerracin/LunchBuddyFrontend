@@ -48,11 +48,16 @@ var styles = StyleSheet.create({
 class Confirmation extends Component{
   constructor(props) {
     super(props);
+    var listArray = [];
+    listArray = this.props.event.peoples.map(function(value){
+      return value.Name
+    })
+    
     this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
     this.state = {
-      dataSource: this.ds.cloneWithRows(['Carlos', 'Maria', 'Jorge', 'Adrian', 'Raquel'])
+      dataSource: this.ds.cloneWithRows(listArray)
       }
-    }
+  }
   renderRow(rowData){
     return (
       <View>

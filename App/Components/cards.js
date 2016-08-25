@@ -9,14 +9,18 @@ import Locations from './Locations';
 let Card = React.createClass({
   render() {
     var location = this.props.location
+    var peoples = this.props.peoples
+    var time = new Date(this.props.Time)
+    var formatTime = time.toLocaleTimeString()
+  
     return (
       <View style={styles.card}>
         <Image style={styles.image} source={{uri: location.photoUrl}} />
         <Text style={styles.title}>{location.name}</Text>
         <View style={styles.descriptionRow}>
           <Text style={styles.descriptionItem}>{location.rating} &#9733;</Text>
-          <Text style={styles.descriptionItem}>5 &#9787;</Text>
-          <Text style={styles.descriptionItem}>12:50</Text>
+          <Text style={styles.descriptionItem}>{peoples.length} &#9787;</Text>
+          <Text style={styles.descriptionItem}>{formatTime}</Text>
         </View>
       </View>
     )
@@ -62,7 +66,7 @@ export default React.createClass({
     return (
       <SwipeCards
         cards={this.props.events.map((event, index) => event)}
-        cards={[]}
+        // cards={[]}
         style={styles.mainContainer}
         renderCard={(cardData) => <Card {...cardData}/>}
         renderNoMoreCards={() => <NoMoreCards navigator={this.props.navigator} />}

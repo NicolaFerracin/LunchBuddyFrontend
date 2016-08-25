@@ -6,7 +6,7 @@ import {
   TextInput,
   Image,
   TouchableHighlight,
-  ActivityIndicatorIOS
+  ActivityIndicator
 } from 'react-native';
 
 var Events = require('./Events')
@@ -89,11 +89,11 @@ class Login extends Component{
           underlayColor="white">
           <Text style={styles.buttonText}>Login with Google</Text>
         </TouchableHighlight>
-        <ActivityIndicatorIOS
+        <ActivityIndicator
           animating={this.state.isLoading}
           color="#111"
           size="large">
-        </ActivityIndicatorIOS>
+        </ActivityIndicator>
         {showErr}
       </View>
     )

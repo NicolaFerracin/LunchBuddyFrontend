@@ -26,11 +26,10 @@ let Card = React.createClass({
 let NoMoreCards = React.createClass ({
   render() {
     return (
-      <View style={styles.mainContainer}>
+      <View>
         <Text>Nobody planned lunch yet, it is up to you!</Text>
         <TouchableHighlight
-          style={styles.button}
-          underlayColor="white">
+          style={styles.button}>
           <Text style={styles.buttonText}>Plan lunch</Text>
         </TouchableHighlight>
       </View>
@@ -91,5 +90,22 @@ const styles = StyleSheet.create({
   descriptionItem: {
     fontSize: 20,
     padding: 10
-  }
+  },
+  button: {
+    height: 45,
+    flexDirection: 'row',
+    backgroundColor: 'red',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#111',
+    alignSelf: 'center'
+  },
 })

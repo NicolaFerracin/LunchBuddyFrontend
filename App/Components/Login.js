@@ -74,9 +74,6 @@ class Login extends Component{
     });
     // get events
     api.getLocations().then((res) => {
-      console.log('Locations');
-      console.log(res.results)
-      return;
       this.props.navigator.push({
           component: Dashboard,
           passProps: {userInfo: res}

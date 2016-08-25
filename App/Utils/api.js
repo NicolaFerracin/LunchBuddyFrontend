@@ -14,7 +14,6 @@ var api = {
     },
 
     getEventsList(){
-        var returnValue = [];
         var serverMock =  [
             {
                 eventId: 1,
@@ -30,13 +29,9 @@ var api = {
             },
         ];
 
-        serverMock.forEach(function(value, key){
-          api.getPlaceDetails(value.placeId).then(function(res){
-            returnValue.push(res.result);
-            returnValue[returnValue.length -1].eventId = value.eventId;
-          }) 
-        })
-        return returnValue;
+        return Promise.all(serverMock.map((event) => {
+            return api.getPlaceDetails(event.placeId).then(location => {event.location = location; return event;})
+        }))
     },
 
     getSingleEvent(eventId){
@@ -70,7 +65,7 @@ var api = {
     getPlaceDetails(placeId) {
         var url = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=' + placeId + '&key=AIzaSyBpsOHDBY0pAT91wUyfVr2hKk0rAylT9fI';
 
-        return fetch(url, { method: 'get' }).then((res) => res.json());
+        return fetch(url, { method: 'get' }).then((res) => res.json()).then(r => r.result);
     }
 }
 

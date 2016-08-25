@@ -9,7 +9,11 @@ let Card = React.createClass({
       <View style={[styles.card]}>
         <Image style={styles.image} source={{uri: this.props.photoUrl}} />
         <Text style={styles.title}>{this.props.name}</Text>
-        <Text style={styles.description}>{this.props.rating}</Text>
+        <View style={styles.descriptionRow}>
+          <Text style={styles.descriptionItem}>{this.props.rating} &#9733;</Text>
+          <Text style={styles.descriptionItem}>5 &#9787;</Text>
+          <Text style={styles.descriptionItem}>12:50</Text>
+        </View>
       </View>
     )
   }
@@ -23,11 +27,15 @@ let NoMoreCards = React.createClass ({
 })
 
 export default React.createClass({
-  handleYup (card) {
-    console.log(`Yup for ${card.text}`)
-  },
   handleNope (card) {
-    console.log(`Nope for ${card.text}`)
+    console.log(`Nope for ${card.name}`)
+  },
+  onYes(card) {
+    console.log(`Yup for ${card.name}`)
+    this.props.navigator.push({
+        component: Confirmation,
+        passProps: {event: card}
+      })
   },
   render() {
     return (
@@ -36,7 +44,7 @@ export default React.createClass({
         style={styles.mainContainer}
         renderCard={(cardData) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
-        handleYup={this.handleYup}
+        handleYup={this.onYes}
         handleNope={this.handleNope}
       />
     )
@@ -62,8 +70,12 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center'
   },
-  descripion: {
-    fontSize: 18,
-    textAlign: 'center'
+  descriptionRow: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  descriptionItem: {
+    fontSize: 20,
+    padding: 10
   }
 })

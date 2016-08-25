@@ -90,8 +90,8 @@ var styles = StyleSheet.create({
   },
   input: {
     backgroundColor: 'rgba(255,255,255, 0.5)',
-    height: 40, 
-    borderColor: '#fff', 
+    height: 40,
+    borderColor: '#fff',
     borderWidth: 1,
     borderRadius: 8
   }
@@ -147,7 +147,7 @@ class Login extends Component{
         <View style={styles.bgImageWrapper}>
           <Image source={require('../Images/bg.jpg')} style={styles.backgroundImage}/>
         </View>
-        <Text style={styles.title}>Bello</Text>
+        <Text style={styles.title}>LunchBuddy</Text>
         <Text style={styles.label}>Email:</Text>
         <TextInput
           style={styles.input}

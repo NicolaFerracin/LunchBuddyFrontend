@@ -16,6 +16,7 @@ import {
 var Login = require('./App/Components/Login.js')
 
 import Cards from './App/Components/cards';
+import CreateEvent from './App/Components/CreateEvent';
 import api from './App/Utils/api';
 
 var styles = StyleSheet.create({

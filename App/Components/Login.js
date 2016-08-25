@@ -4,6 +4,7 @@ import {
   View,
   StyleSheet,
   TextInput,
+  Image,
   TouchableHighlight,
   ActivityIndicatorIOS
 } from 'react-native';
@@ -15,16 +16,19 @@ var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 30,
-    marginTop: 65,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#48BBEC'
+    backgroundColor: '#F87217'
   },
   title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
     color: '#fff'
+  },
+  logo: {
+    width: 300,
+    height: 300
   },
   searchInput: {
     height: 50,
@@ -63,21 +67,14 @@ class Login extends Component{
       error: false
     }
   }
-  handleSubmit() {
-    console.log('HEEEEY! login with google');
-    return;
+  handleLogin() {
+    console.log('Logging in');
     this.setState({
       isLoading: true
     });
-    api.getBio(this.state.username).then((res) => {
-      if (res.message === 'Not Found') {
-        this.setState({
-          error: 'User not found',
-          isLoading: false
-        })
-      } else {
-        this.props.navigator.push({
-          title: res.name || "Select an option",
+    // get events
+    api.getEvents().then((res) => {
+      this.props.navigator.push({
           component: Dashboard,
           passProps: {userInfo: res}
         });
@@ -85,19 +82,19 @@ class Login extends Component{
           isLoading: false,
           error: false
         })
-      }
-    });
-  }
+      }).catch((e) => console.error(e));
+    }
   render() {
     var showErr = (
       this.state.error ? <Text>{this.state.error}</Text> : <View></View>
     );
     return(
       <View style={styles.mainContainer}>
+        <Image style={styles.logo} source={require('../Images/logo.png')} />
         <Text style={styles.title}>Lunch Buddy</Text>
          <TouchableHighlight
           style={styles.button}
-          onPress={this.handleSubmit.bind(this)}
+          onPress={this.handleLogin.bind(this)}
           underlayColor="white">
           <Text style={styles.buttonText}>Login with Google</Text>
         </TouchableHighlight>

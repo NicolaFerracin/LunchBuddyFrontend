@@ -10,14 +10,15 @@ import {
   StyleSheet,
   Text,
   View,
-  NavigatorIOS
+  NavigatorIOS,
+  Navigator
 } from 'react-native';
 var Login = require('./App/Components/Login.js')
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#333'
+    backgroundColor: '#FFA500'
   }
 });
 
@@ -25,11 +26,15 @@ class LunchBuddy extends Component {
   render() {
     return (
       <NavigatorIOS
+        navigationBarHidden={true}
         style={styles.container}
         initialRoute={{
           title: 'Lunch Buddy',
           component: Login
-        }} />
+        }}
+        renderScene={(route, navigator) =>
+          <Login />
+        } />
     );
   }
 }

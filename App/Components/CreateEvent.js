@@ -109,8 +109,7 @@ class CreateEvent extends Component{
   handleSelectPlace(rowData) {
     console.log(rowData)
   }
-  cancel() {
-    console.log('canceling')
+  createEvent() {
   }
 
   render() {
@@ -121,17 +120,17 @@ class CreateEvent extends Component{
       <View style={styles.mainContainer}>
         <Text style={styles.subtitle}>Today it is:</Text>
         <Text style={styles.title}>{this.props.event.name}</Text>
+        <Text style={styles.subtitle}>Set a time:</Text>
         <DatePickerIOS
           date={this.props.date}
           mode="time"
           onDateChange={this.onDateChange}
           minuteInterval={10}
         />
-        <Text style={styles.subtitle}>Your Lunch Buddies</Text>
         <TouchableHighlight
           style={styles.button}
-          onPress={this.cancel.bind(this)}>
-          <Text>Cancel</Text>
+          onPress={this.createEvent.bind(this)}>
+          <Text>Create event</Text>
         </TouchableHighlight>
       </View>
     )

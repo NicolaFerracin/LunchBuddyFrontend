@@ -52,7 +52,7 @@ class Locations extends Component{
       isLoading: true,
       locations: []
     });
-    // get events
+    // get locations
     api.getLocations().then((res) => {
       console.log('locations', res)
       this.setState({

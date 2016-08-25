@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-import Cards from './cards'
+import Cards from './App/Components/cards'
 
 class LunchBuddy extends Component {
   render() {

@@ -44,7 +44,16 @@ var api = {
     },
 
     getLocations() {
+        var location = '52.5325360, 13.4240680';
+        var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=52.5325360,%2013.4240680&radius=2000&type=restaurant&key=AIzaSyBpsOHDBY0pAT91wUyfVr2hKk0rAylT9fI';
 
+       return fetch(url, { method: 'get' }).then((res) => res.json());
+    },
+
+    getPlaceDetails(placeId) {
+        var url = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=' + placeId + '&key=AIzaSyBpsOHDBY0pAT91wUyfVr2hKk0rAylT9fI';
+
+        return fetch(url, { method: 'get' }).then((res) => res.json());
     }
 }
 

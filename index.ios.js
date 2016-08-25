@@ -12,16 +12,26 @@ import {
   View
 } from 'react-native';
 
-import Cards from './App/Components/cards'
+import Cards from './App/Components/cards';
+import api from './App/Utils/api';
 
 class LunchBuddy extends Component {
   render() {
+    getPlaceDetails('ChIJn4Ot3QBOqEcRVP6CMFUVhT8');
     return (
       <View style={styles.container}>
         <Cards />
       </View>
     );
   }
+}
+
+function getLocations() {
+  return api.getLocations().then((res)=> console.log(res.results));
+}
+
+function getPlaceDetails(id) {
+  return api.getPlaceDetails(id).then((res)=> console.log(res.result));
 }
 
 const styles = StyleSheet.create({

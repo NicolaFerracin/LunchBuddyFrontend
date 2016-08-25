@@ -6,20 +6,29 @@ var api = {
     },
 
     getEventsList(){
-        return [
+        var returnValue = [];
+        var serverMock =  [
             {
                 eventId: 1,
-                locationId: 22
+                placeId: "ChIJMferFeJRqEcR4ILthWXklLA"
             },
             {
                 eventId: 2,
-                locationId: 33
+                placeId: "ChIJHz3rtRpOqEcRzjWPk47-sb8"
             },
             {
                 eventId: 4,
-                locationId: 55
+                placeId: "ChIJA3tAkR5OqEcRHQ3BP-tASds"
             },
         ];
+
+        serverMock.forEach(function(value, key){
+          api.getPlaceDetails(value.placeId).then(function(res){
+            returnValue.push(res.result);
+            returnValue[returnValue.length -1].eventId = value.eventId;
+          }) 
+        })
+        return returnValue;
     },
 
     getSingleEvent(eventId){

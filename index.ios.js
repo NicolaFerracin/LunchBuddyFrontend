@@ -26,7 +26,8 @@ var styles = StyleSheet.create({
 
 class LunchBuddy extends Component {
   render() {
-    getPlaceDetails('ChIJn4Ot3QBOqEcRVP6CMFUVhT8');
+    api.getEventsList();
+    getLocations('ChIJn4Ot3QBOqEcRVP6CMFUVhT8');
     return (
       <NavigatorIOS
         style={styles.container}

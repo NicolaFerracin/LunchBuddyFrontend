@@ -4,20 +4,15 @@ import {StyleSheet, Text, View, Image, TouchableHighlight} from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 
 import Confirmation from './Confirmation';
-import Locations from './Locations';
 
 let Card = React.createClass({
   render() {
-    var location = this.props.location
     return (
       <View style={styles.card}>
-        <Image style={styles.image} source={{uri: location.photoUrl}} />
-        <Text style={styles.title}>{location.name}</Text>
-        <View style={styles.descriptionRow}>
-          <Text style={styles.descriptionItem}>{location.rating} &#9733;</Text>
-          <Text style={styles.descriptionItem}>5 &#9787;</Text>
-          <Text style={styles.descriptionItem}>12:50</Text>
-        </View>
+        <Image style={styles.image} source={{uri: this.props.photoUrl}} />
+        <Text style={styles.title}>{this.props.name}</Text>
+          <Text style={styles.descriptionItem}>{this.props.rating} &#9733;</Text>
+          <Text style={styles.address}>{this.props.vicinity}</Text>
       </View>
     )
   }
@@ -25,20 +20,20 @@ let Card = React.createClass({
 
 
 let NoMoreCards = React.createClass ({
-  showLocations() {
-    console.log(this.props)
-    this.props.navigator.push({
-      component: Locations
-    })
+  restart() {
+    console.log("we need to make this wrok")
+    // this.props.navigator.push({
+    //   component: Locations
+    // })
   },
   render() {
     return (
       <View>
-        <Text>Nobody planned lunch yet, it is up to you!</Text>
+        <Text>Nothin else to show, you are going to starve to death!</Text>
         <TouchableHighlight
-          onPress={this.showLocations}
+          onPress={this.restart}
           style={styles.button}>
-          <Text style={styles.buttonText}>Plan lunch</Text>
+          <Text style={styles.buttonText}>Restart</Text>
         </TouchableHighlight>
       </View>
     )
@@ -48,10 +43,10 @@ let NoMoreCards = React.createClass ({
 
 export default React.createClass({
   handleNope (card) {
-    console.log(`Nope for ${card.location.name}`)
+    console.log(`Nope for ${card.name}`)
   },
   onYes(card) {
-    console.log(`Yup for ${card.location.name}`)
+    console.log(`Yup for ${card.name}`)
     this.props.navigator.push({
         component: Confirmation,
         passProps: { event: card }
@@ -62,8 +57,9 @@ export default React.createClass({
     return (
       <SwipeCards
         loop={true}
-        cards={this.props.events.map((event, index) => event)}
-        cards={[]}
+        showYup={true}
+        showNope={true}
+        cards={this.props.locations.map((location, index) => location)}
         style={styles.mainContainer}
         renderCard={(cardData) => <Card {...cardData}/>}
         renderNoMoreCards={() => <NoMoreCards navigator={this.props.navigator} />}
@@ -100,6 +96,11 @@ const styles = StyleSheet.create({
   descriptionItem: {
     fontSize: 20,
     padding: 10
+  },
+  address: {
+    fontSize: 20,
+    padding: 10,
+    flexWrap: 'wrap'
   },
   button: {
     height: 45,

@@ -48,7 +48,10 @@ var api = {
         var location = '52.5325360, 13.4240680';
         var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=52.5325360,%2013.4240680&radius=2000&type=restaurant&key=AIzaSyBpsOHDBY0pAT91wUyfVr2hKk0rAylT9fI';
 
-       return fetch(url, { method: 'get' }).then((res) => res.json());
+       return fetch(url, { method: 'get' }).then((res) => res.json()).then(r => r.results.filter((r) => !!r.photos)).then(r => r.map(r => {
+           r.photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${r.photos[0].photo_reference}&sensor=false&key=AIzaSyBpsOHDBY0pAT91wUyfVr2hKk0rAylT9fI`
+           return r
+         }))
     },
 
     getPlaceDetails(placeId) {

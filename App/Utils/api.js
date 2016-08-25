@@ -7,7 +7,7 @@ var api = {
         if (timestamp) {
             timestamp = new Date()
         }
-        var url = baseUrl + placeId + '/' + timestamp.getTime();
+        var url = baseUrl + '/' + placeId + '/' + timestamp.getTime();
         return fetch(url, { method: 'post' }).then((res) => res.json());
     },
 

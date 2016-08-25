@@ -105,9 +105,9 @@ class Login extends Component{
     return(
       <View style={styles.mainContainer}>
         <View style={styles.bgImageWrapper}>
-          <Image source={require('../Images/bg.jpeg')} style={styles.backgroundImage}/>
+          <Image source={require('../Images/bg.jpg')} style={styles.backgroundImage}/>
         </View>
-        <Text style={styles.title}>Lunch Buddy</Text>
+        <Text style={styles.title}>Bello</Text>
          <TouchableHighlight
           style={styles.button}
           onPress={this.handleLogin.bind(this)}

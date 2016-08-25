@@ -1,52 +1,45 @@
 'use strict';
 
+var baseUrl = 'http://lunchbuddyrasinhackathon-zawuza.rhcloud.com/events/';
+
 var api = {
-    createEvent(timestamp, locationId) {
-        return true;
+    createEvent(placeId, timestamp) {
+        if (timestamp) {
+            timestamp = new Date()
+        }
+        
+        var url = baseUrl + placeId + '/' + timestamp.getTime();
+        
+        return fetch(url, { method: 'post' }).then((res) => res.json());
     },
 
     getEventsList(){
-        var serverMock =  [
-            {
-                eventId: 1,
-                placeId: "ChIJMferFeJRqEcR4ILthWXklLA"
-            },
-            {
-                eventId: 2,
-                placeId: "ChIJHz3rtRpOqEcRzjWPk47-sb8"
-            },
-            {
-                eventId: 4,
-                placeId: "ChIJA3tAkR5OqEcRHQ3BP-tASds"
-            },
-        ];
+        return fetch(baseUrl, { method: 'get' }).then(
+          // (res) => {
+          //   var serverMock = res.json();
 
-        return Promise.all(serverMock.map((event) => {
-            return api
-              .getPlaceDetails(event.placeId)
-              .then(location => {event.location = location; return event;})
-        }))
+          //   return Promise.all(serverMock.map((event) => {
+          //       return api
+          //         .getPlaceDetails(event.placeId)
+          //         .then(location => {event.location = location; return event;})
+          //   }))
+          );  
     },
 
     getSingleEvent(eventId){
-        return {};
+        return fetch(baseUrl + eventId, { method: 'get' }).then((res) => res.json());
     },
 
     getParticipants(eventId){
-        return [
-            {
-                email: 'johndoe@gmail.com',
-                name: 'John Doe'
-            },
-            {
-                email: 'maxmusterman@gmail.com',
-                name: 'Max Mustermann'
-            }
-        ]
+        var url = baseUrl + eventId + '/people/';
+    
+        return fetch(url, { method: 'get' }).then((res) => res.json());
     },
 
-    addParticipant(email){
-        return true;
+    addParticipant(eventId ,email){
+        var url = baseUrl + eventId + '/people/' + email;
+
+        return fetch(url, { method: 'post' }).then((res) => res.json());
     },
 
     getLocations() {

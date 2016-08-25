@@ -1,14 +1,13 @@
 'use strict';
 
-var baseUrl = 'https://newbello-zawuza.rhcloud.com/events';
+var baseUrl = 'https://lunchbuddyrasinhackathon-zawuza.rhcloud.com/events';
 
 var api = {
     createEvent(placeId, timestamp) {
-      console.log(placeId, timestamp)
         if (timestamp) {
             timestamp = new Date()
         }
-        var url = baseUrl + '/' + placeId + '/' + timestamp.getTime();
+        var url = baseUrl + placeId + '/' + timestamp.getTime();
         return fetch(url, { method: 'post' }).then((res) => res.json());
     },
 
@@ -50,7 +49,7 @@ var api = {
     },
 
     createParticipant(email, name){
-        var url = 'https://newbello-zawuza.rhcloud.com/people' + '/' + email + '/' + name;
+        var url = 'https://lunchbuddyrasinhackathon-zawuza.rhcloud.com/people' + '/' + email + '/' + name;
 
         return fetch(url, { method: 'post' }).then((res) => res.json());
     },

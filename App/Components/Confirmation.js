@@ -77,6 +77,8 @@ class Confirmation extends Component{
             enableEmptySections={true}
             dataSource={this.state.dataSource}
             renderRow={this.renderRow} />
+        <TouchableHighlight
+          style={styles.buttonText} />
       </View>
     )
   }

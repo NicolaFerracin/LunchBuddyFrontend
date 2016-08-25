@@ -13,6 +13,13 @@ let Card = React.createClass({
       </View>
     )
   }
+});
+
+
+let NoMoreCards = React.createClass ({
+  render() {
+    return <Text>No more events! :(</Text>
+  }
 })
 
 export default React.createClass({
@@ -29,7 +36,6 @@ export default React.createClass({
         style={styles.mainContainer}
         renderCard={(cardData) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
-
         handleYup={this.handleYup}
         handleNope={this.handleNope}
       />

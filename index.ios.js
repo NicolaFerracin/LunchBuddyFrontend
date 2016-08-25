@@ -15,6 +15,9 @@ import {
 } from 'react-native';
 var Login = require('./App/Components/Login.js')
 
+import Cards from './App/Components/cards';
+import api from './App/Utils/api';
+
 var styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -24,6 +27,7 @@ var styles = StyleSheet.create({
 
 class LunchBuddy extends Component {
   render() {
+    getPlaceDetails('ChIJn4Ot3QBOqEcRVP6CMFUVhT8');
     return (
       <NavigatorIOS
         navigationBarHidden={true}
@@ -37,6 +41,14 @@ class LunchBuddy extends Component {
         } />
     );
   }
+}
+
+function getLocations() {
+  return api.getLocations().then((res)=> console.log(res.results));
+}
+
+function getPlaceDetails(id) {
+  return api.getPlaceDetails(id).then((res)=> console.log(res.result));
 }
 
 AppRegistry.registerComponent('LunchBuddy', () => LunchBuddy);

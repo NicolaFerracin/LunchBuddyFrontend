@@ -45,7 +45,6 @@ export default React.createClass({
     )
   }
 })
-
 const styles = StyleSheet.create({
   card: {
     flex: 1,
@@ -59,6 +58,7 @@ const styles = StyleSheet.create({
     height: 200
   },
   title: {
+    color: '#EC5512',
     fontSize: 25,
     textAlign: 'center'
   },
@@ -69,11 +69,6 @@ const styles = StyleSheet.create({
   descriptionItem: {
     fontSize: 20,
     padding: 10
-  },
-  address: {
-    fontSize: 20,
-    padding: 10,
-    flexWrap: 'wrap'
   },
   button: {
     height: 45,
@@ -86,6 +81,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  icon: {
+    color: '#EC5512'
   },
   buttonText: {
     fontSize: 18,

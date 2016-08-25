@@ -65,7 +65,7 @@ class Confirmation extends Component {
 
   componentDidMount() {
     console.log(`Adding user ${store.name} to event ${this.props.event.ID}`)
-    api.addParticipant(this.props.event.ID, store.name);
+    api.addParticipant(this.props.event.ID, store.email);
   }
 
   renderRow(rowData){

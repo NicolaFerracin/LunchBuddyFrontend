@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Text,
   View,
@@ -45,8 +45,8 @@ var styles = StyleSheet.create({
   }
 });
 
-class Events extends Component{
-  componentWillMount() {
+class Events extends Component {
+  componentWillMount () {
     this.setState({
       isLoading: true,
       events: []
@@ -60,12 +60,14 @@ class Events extends Component{
       });
     }).catch((e) => console.error(e));
   }
-  constructor(props) {
+
+  constructor (props) {
     super(props);
   }
-  render() {
+
+  render () {
     console.log('events', this.state.events)
-    return(
+    return (
       <View style={styles.mainContainer}>
         <Text style={styles.title}>Choose an event, {this.props.user.name}!</Text>
         <ActivityIndicator
@@ -73,10 +75,11 @@ class Events extends Component{
           color="#111"
           size="large">
         </ActivityIndicator>
-        <Cards events={this.state.events} navigator={this.props.navigator}/>
+        {!this.state.isLoading ? <Cards events={this.state.events} navigator={this.props.navigator}/> : null}
       </View>
     )
   }
-};
+}
+;
 
 module.exports = Events;

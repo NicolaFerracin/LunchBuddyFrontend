@@ -13,6 +13,8 @@ var Events = require('./Events')
 var CreateEvent = require('./CreateEvent')
 var api = require('../Utils/api')
 
+import store from '../store'
+
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
@@ -106,7 +108,14 @@ class Login extends Component{
   handleLogin() {
     console.log('Logging in');
     console.log(this.state)
-    api.createParticipant(this.state.email.text, this.state.name.text).then((res)=>{
+
+    const email = this.state.email.text
+    const name = this.state.name.text
+
+    store.email = email
+    store.name = name
+
+    api.createParticipant(email, name).then((res)=>{
       this.props.navigator.push({
         component: Events,
         id: 'events',

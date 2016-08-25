@@ -42,7 +42,7 @@ var api = {
         return fetch(url, { method: 'get' }).then((res) => res.json());
     },
 
-    addParticipant(eventId ,email){
+    addParticipant(eventId, email){
         var url = baseUrl + '/' + eventId + '/people/' + email;
 
         return fetch(url, { method: 'post' }).then((res) => res.json());

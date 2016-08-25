@@ -1,2 +1,2 @@
 // i am gonna burn in hell for that
-export default { name: 'Chris' }
+export default { email: '', name: '' }

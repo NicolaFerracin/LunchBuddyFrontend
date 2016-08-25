@@ -31,7 +31,7 @@ let NoMoreCards = React.createClass ({
       <View>
         <Text>Nothin else to show, you are going to starve to death!</Text>
         <TouchableHighlight
-          onPress={this.restart.bind(this)}
+          onPress={this.restart}
           style={styles.button}>
           <Text style={styles.buttonText}>Restart</Text>
         </TouchableHighlight>

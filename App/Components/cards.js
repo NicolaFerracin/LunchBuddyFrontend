@@ -36,7 +36,7 @@ let NoMoreCards = React.createClass ({
       <View>
         <Text>Nobody planned lunch yet, it is up to you!</Text>
         <TouchableHighlight
-          onPress={this.showLocations.bind(this)}
+          onPress={this.showLocations}
           style={styles.button}>
           <Text style={styles.buttonText}>Plan lunch</Text>
         </TouchableHighlight>

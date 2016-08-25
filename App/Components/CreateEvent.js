@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 var api = require('../Utils/api')
+var Events = require('./Events')
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -110,6 +111,16 @@ class CreateEvent extends Component{
     console.log(rowData)
   }
   createEvent() {
+    console.log("creating an event", this.props.event);
+    // get locations
+    api.createEvent(this.props.event.id, new Date().getTime()).then((res) => {
+      if (res.done) {
+        console.log("even created succesfully");
+        this.props.navigator.push({
+          component: Events
+        })
+      }
+    }).catch((e) => console.error('error', e));
   }
 
   render() {

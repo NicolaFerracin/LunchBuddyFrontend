@@ -83,14 +83,14 @@ var styles = StyleSheet.create({
 class CreateEvent extends Component{
   constructor(props) {
     super(props);
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
     this.state = {
       isLoading: false,
       error: false,
-      dataSource: ds.cloneWithRows(this.props.userInfo)
+      dataSource: this.ds.cloneWithRows(this.props.event)
     }
   }
-  
+
   handleSelectPlace(rowData) {
     console.log(rowData)
   }
@@ -99,15 +99,14 @@ class CreateEvent extends Component{
     var showErr = (
       this.state.error ? <Text>{this.state.error}</Text> : <View></View>
     );
-
     return(
       <View style={styles.mainContainer}>
         <Text style={styles.buttonText}>CreateEvent</Text>
         <Text style={styles.subtitle}>Places nearby:</Text>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => 
-            (   
+          renderRow={(rowData) =>
+            (
                 <TouchableHighlight onPress={this.handleSelectPlace(rowData)}>
                     <View style={styles.row}>
                         <Text style={styles.rowText}>{rowData.name}</Text>
@@ -117,11 +116,11 @@ class CreateEvent extends Component{
             )
           }
         />
-        <ActivityIndicatorIOS
+        <ActivityIndicator
           animating={this.state.isLoading}
           color="#111"
           size="large">
-        </ActivityIndicatorIOS>
+        </ActivityIndicator>
         {showErr}
       </View>
     )

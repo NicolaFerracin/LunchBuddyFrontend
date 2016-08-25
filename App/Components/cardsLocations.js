@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, Image, TouchableHighlight} from 'react-native';
 
 import SwipeCards from 'react-native-swipe-cards';
 
-import Confirmation from './Confirmation';
+import CreateEvent from './CreateEvent';
 
 let Card = React.createClass({
   render() {
@@ -18,6 +18,7 @@ let Card = React.createClass({
   }
 });
 
+<<<<<<< Updated upstream
 
 let NoMoreCards = React.createClass ({
   restart() {
@@ -41,6 +42,8 @@ let NoMoreCards = React.createClass ({
   }
 })
 
+=======
+>>>>>>> Stashed changes
 export default React.createClass({
   handleNope (card) {
     console.log(`Nope for ${card.name}`)
@@ -48,7 +51,7 @@ export default React.createClass({
   onYes(card) {
     console.log(`Yup for ${card.name}`)
     this.props.navigator.push({
-        component: Confirmation,
+        component: CreateEvent,
         passProps: { event: card }
       })
     return;
@@ -62,7 +65,6 @@ export default React.createClass({
         cards={this.props.locations.map((location, index) => location)}
         style={styles.mainContainer}
         renderCard={(cardData) => <Card {...cardData}/>}
-        renderNoMoreCards={() => <NoMoreCards navigator={this.props.navigator} />}
         handleYup={this.onYes}
         handleNope={this.handleNope}
       />

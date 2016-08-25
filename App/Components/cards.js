@@ -61,7 +61,6 @@ export default React.createClass({
   render() {
     return (
       <SwipeCards
-        loop={true}
         cards={this.props.events.map((event, index) => event)}
         cards={[]}
         style={styles.mainContainer}

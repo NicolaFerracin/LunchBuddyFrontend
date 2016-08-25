@@ -18,32 +18,6 @@ let Card = React.createClass({
   }
 });
 
-<<<<<<< Updated upstream
-
-let NoMoreCards = React.createClass ({
-  restart() {
-    console.log("we need to make this wrok")
-    // this.props.navigator.push({
-    //   component: Locations
-    // })
-  },
-  render() {
-    return (
-      <View>
-        <Text>Nothin else to show, you are going to starve to death!</Text>
-        <TouchableHighlight
-          onPress={this.restart}
-          style={styles.button}>
-          <Text style={styles.buttonText}>Restart</Text>
-        </TouchableHighlight>
-      </View>
-    )
-
-  }
-})
-
-=======
->>>>>>> Stashed changes
 export default React.createClass({
   handleNope (card) {
     console.log(`Nope for ${card.name}`)

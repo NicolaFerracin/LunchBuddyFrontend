@@ -72,7 +72,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center'
   },
   backgroundImage: {
-    flex:1, width: null, height: null, resizeMode:'stretch' 
+    flex:1, width: null, height: null, resizeMode:'stretch'
   }
 });
 

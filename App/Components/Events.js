@@ -53,6 +53,7 @@ class Events extends Component{
     });
     // get events
     api.getEventsList().then((res) => {
+      console.log("Got events: ", res)
       this.setState({
         isLoading: false,
         events: res

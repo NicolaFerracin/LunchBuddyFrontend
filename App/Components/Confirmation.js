@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Text,
   View,
@@ -9,6 +9,7 @@ import {
   ListView,
   ActivityIndicatorIOS
 } from 'react-native';
+import store from '../store'
 
 var api = require('../Utils/api')
 var Events = require('./Events')
@@ -45,8 +46,8 @@ var styles = StyleSheet.create({
   }
 });
 
-class Confirmation extends Component{
-  constructor(props) {
+class Confirmation extends Component {
+  constructor (props) {
     super(props);
     var listArray = [];
     listArray = this.props.event.peoples.map(function(value){
@@ -58,6 +59,12 @@ class Confirmation extends Component{
       dataSource: this.ds.cloneWithRows(listArray)
       }
   }
+
+  componentDidMount() {
+    console.log(`Adding user ${store.name} to event ${this.props.event.ID}`)
+    api.addParticipant(this.props.event.ID, store.name);
+  }
+
   renderRow(rowData){
     return (
       <View>
@@ -67,20 +74,22 @@ class Confirmation extends Component{
       </View>
     )
   }
-  cancel() {
+
+  cancel () {
     this.props.navigator.pop();
   }
-  render() {
-    return(
+
+  render () {
+    return (
       <View style={styles.mainContainer}>
         <Text style={styles.subtitle}>Today it is:</Text>
         <Text style={styles.title}>{this.props.event.location.name}</Text>
         <Text style={styles.title}>12:50</Text>
         <Text style={styles.subtitle}>Your Lunch Buddies</Text>
         <ListView
-            enableEmptySections={true}
-            dataSource={this.state.dataSource}
-            renderRow={this.renderRow} />
+          enableEmptySections={true}
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow}/>
         <TouchableHighlight
           style={styles.button}
           onPress={this.cancel.bind(this)}>
@@ -89,6 +98,7 @@ class Confirmation extends Component{
       </View>
     )
   }
-};
+}
+;
 
 module.exports = Confirmation;

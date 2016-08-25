@@ -9,7 +9,6 @@ import {
   ActivityIndicatorIOS
 } from 'react-native';
 
-var Events = require('./Events')
 var api = require('../Utils/api')
 
 var styles = StyleSheet.create({
@@ -59,7 +58,7 @@ var styles = StyleSheet.create({
   }
 });
 
-class Login extends Component{
+class Events extends Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -73,10 +72,7 @@ class Login extends Component{
       isLoading: true
     });
     // get events
-    api.getLocations().then((res) => {
-      console.log('Locations');
-      console.log(res.results)
-      return;
+    api.getEvents().then((res) => {
       this.props.navigator.push({
           component: Dashboard,
           passProps: {userInfo: res}
@@ -112,4 +108,4 @@ class Login extends Component{
   }
 };
 
-module.exports = Login;
+module.exports = Events;

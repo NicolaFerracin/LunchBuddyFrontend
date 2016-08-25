@@ -1,5 +1,13 @@
 'use strict';
 
+const events = [
+  {name: 'Burger restaurant', peopleAttending: 3, image: 'http://www.bk.com/sites/default/files/New_BaconCheeseburgerDeluxe_thumb.png', rating: 4, price: 3, distance: 10, time: '11:30'}
+]
+
+const locations = [
+  {name: 'Burger restaurant', peopleAttending: 3, image: 'http://www.bk.com/sites/default/files/New_BaconCheeseburgerDeluxe_thumb.png', rating: 4, price: 3, distance: 10, time: '11:30'}
+]
+
 var api = {
     createEvent(timestamp, locationId) {
         return true;
@@ -39,7 +47,7 @@ var api = {
         return [
             {
                 email: 'johndoe@gmail.com',
-                name: 'John Doe'     
+                name: 'John Doe'
             },
             {
                 email: 'maxmusterman@gmail.com',

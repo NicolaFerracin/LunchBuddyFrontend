@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Text,
   View,
-  NavigatorIOS
+  NavigatorIOS,
+  Navigator
 } from 'react-native';
 var Login = require('./App/Components/Login.js')
 
@@ -20,7 +21,7 @@ import api from './App/Utils/api';
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#333'
+    backgroundColor: '#FFA500'
   }
 });
 
@@ -28,23 +29,28 @@ class LunchBuddy extends Component {
   render() {
     api.getEventsList();
     getLocations('ChIJn4Ot3QBOqEcRVP6CMFUVhT8');
+
     return (
       <NavigatorIOS
+        navigationBarHidden={true}
         style={styles.container}
         initialRoute={{
           title: 'Lunch Buddy',
           component: Login
-        }} />
+        }}
+        renderScene={(route, navigator) =>
+          <Login />
+        } />
     );
   }
 }
 
-function getLocations() {
-  return api.getLocations().then((res)=> console.log(res.results));
-}
-
-function getPlaceDetails(id) {
-  return api.getPlaceDetails(id).then((res)=> console.log(res.result));
-}
+// function getLocations() {
+//   return api.getLocations().then((res)=> console.log(res.results));
+// }
+//
+// function getPlaceDetails(id) {
+//   return api.getPlaceDetails(id).then((res)=> console.log(res.result));
+// }
 
 AppRegistry.registerComponent('LunchBuddy', () => LunchBuddy);

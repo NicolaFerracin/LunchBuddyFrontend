@@ -1,6 +1,6 @@
 'use strict';
 
-var baseUrl = 'http://lunchbuddyrasinhackathon-zawuza.rhcloud.com/events/';
+var baseUrl = 'https://lunchbuddyrasinhackathon-zawuza.rhcloud.com/events';
 
 var api = {
     createEvent(placeId, timestamp) {
@@ -13,17 +13,19 @@ var api = {
         return fetch(url, { method: 'post' }).then((res) => res.json());
     },
 
-    getEventsList(){
-        return fetch(baseUrl, { method: 'get' }).then(
-          // (res) => {
-          //   var serverMock = res.json();
+    getServerEventsList() {
+      return fetch(baseUrl, { method: 'get' }).then((res) => res.json());
+    },
 
-          //   return Promise.all(serverMock.map((event) => {
-          //       return api
-          //         .getPlaceDetails(event.placeId)
-          //         .then(location => {event.location = location; return event;})
-          //   }))
-          );  
+    getEventsList() {
+      return api.getServerEventsList().then(function(res) {
+          
+          return Promise.all(res.events.map((event) => {
+              return api
+                .getPlaceDetails(event.Place)
+                .then(location => {event.location = location; return event;})
+          }))
+      });
     },
 
     getSingleEvent(eventId){

@@ -15,10 +15,7 @@ import Cards from './cardsLocations';
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    padding: 30,
     flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#3494BA'
   },
   title: {
     marginBottom: 20,
@@ -42,6 +39,10 @@ var styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  header: {
+    backgroundColor: '#EC5512',
+    padding: 30
   }
 });
 
@@ -63,7 +64,9 @@ class Locations extends Component{
   render() {
     return(
       <View style={styles.mainContainer}>
-        <Text style={styles.title}>Find a restaurant!</Text>
+        <View style={styles.header}>
+          <Text style={styles.title}>Find a restaurant!</Text>
+        </View>
         <ActivityIndicator
           animating={this.state.isLoading}
           color="#111"

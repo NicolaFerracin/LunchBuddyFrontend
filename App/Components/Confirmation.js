@@ -20,29 +20,40 @@ var styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#3494BA'
   },
   title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    color: '#EC5512'
   },
   subtitle: {
     textAlign: 'center',
-    fontSize: 20
+    fontSize: 20,
+    marginBottom: 30
   },
   button: {
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 1,
+    backgroundColor: '#EC5512',
+    // borderColor: 'white',
+    // borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
     marginTop: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#fff',
+    alignSelf: 'center'
+  },
+  row: {
+    color: '#EC5512',
+    fontSize: 16,
+    marginBottom: 10,
+    alignSelf: 'center'
   }
 });
 
@@ -85,15 +96,15 @@ class Confirmation extends Component {
         <Text style={styles.subtitle}>Today it is:</Text>
         <Text style={styles.title}>{this.props.event.location.name}</Text>
         <Text style={styles.title}>12:50</Text>
-        <Text style={styles.subtitle}>Your Lunch Buddies</Text>
+        <Text style={styles.subtitle}>Your Bello buddies:</Text>
         <ListView
           enableEmptySections={true}
           dataSource={this.state.dataSource}
-          renderRow={this.renderRow}/>
+          renderRow={(rowData) => <Text style={styles.row}>{rowData}</Text>}/>
         <TouchableHighlight
           style={styles.button}
           onPress={this.cancel.bind(this)}>
-          <Text>Cancel</Text>
+          <Text style={styles.buttonText}>Cancel</Text>
         </TouchableHighlight>
       </View>
     )

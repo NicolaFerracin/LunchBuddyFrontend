@@ -15,10 +15,9 @@ import Cards from './cards';
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#3494BA'
+    backgroundColor: '#fff'
   },
   title: {
     marginBottom: 20,
@@ -42,6 +41,10 @@ var styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  header: {
+    backgroundColor: '#EC5512',
+    padding: 30
   }
 });
 
@@ -67,7 +70,9 @@ class Events extends Component{
     console.log('events', this.state.events)
     return(
       <View style={styles.mainContainer}>
-        <Text style={styles.title}>Choose an event, {this.props.user.name}!</Text>
+        <View style={styles.header}>
+          <Text style={styles.title}>Choose an event, {this.props.user.name}!</Text>
+        </View>
         <ActivityIndicator
           animating={this.state.isLoading}
           color="#111"

@@ -47,9 +47,6 @@ export default React.createClass({
 })
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    backgroundColor: '#3494BA'
-  },
   card: {
     flex: 1,
     justifyContent: 'center',
@@ -95,4 +92,8 @@ const styles = StyleSheet.create({
     color: '#111',
     alignSelf: 'center'
   },
+  header: {
+    backgroundColor: '#EC5512',
+    padding: 30
+  }
 })

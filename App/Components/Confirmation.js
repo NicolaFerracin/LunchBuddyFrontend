@@ -6,6 +6,7 @@ import {
   TextInput,
   Image,
   TouchableHighlight,
+  ListView,
   ActivityIndicatorIOS
 } from 'react-native';
 
@@ -17,13 +18,17 @@ var styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#F87217'
+    backgroundColor: '#3494BA'
   },
   title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
     color: '#fff'
+  },
+  subtitle: {
+    textAlign: 'center',
+    fontSize: 20
   },
   buttonText: {
     fontSize: 18,
@@ -47,11 +52,31 @@ var styles = StyleSheet.create({
 class Confirmation extends Component{
   constructor(props) {
     super(props);
+    this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
+    this.state = {
+      dataSource: this.ds.cloneWithRows(['Carlos', 'Maria', 'Jorge', 'Adrian', 'Raquel'])
+      }
+    }
+  renderRow(rowData){
+    return (
+      <View>
+        <View style={styles.rowContainer}>
+          <Text> {rowData} </Text>
+        </View>
+      </View>
+    )
   }
   render() {
     return(
       <View style={styles.mainContainer}>
-        <Text>{this.props.event.location.name}</Text>
+        <Text style={styles.subtitle}>Today it is:</Text>
+        <Text style={styles.title}>{this.props.event.location.name}</Text>
+        <Text style={styles.title}>12:50</Text>
+        <Text style={styles.subtitle}>Your Lunch Buddies</Text>
+        <ListView
+            enableEmptySections={true}
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow} />
       </View>
     )
   }

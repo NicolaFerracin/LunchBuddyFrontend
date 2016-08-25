@@ -15,16 +15,16 @@ import Cards from './cards';
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#3494BA'
   },
   title: {
-    marginBottom: 20,
+    paddingTop: 30,
+    paddingBottom: 30,
     fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    color: '#fff',
+    backgroundColor: '#EC5512'
   },
   buttonText: {
     fontSize: 18,

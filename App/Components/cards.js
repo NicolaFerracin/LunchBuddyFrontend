@@ -12,15 +12,15 @@ let Card = React.createClass({
     var peoples = this.props.peoples
     var time = new Date(this.props.Time)
     var formatTime = time.toLocaleTimeString()
-  
+
     return (
       <View style={styles.card}>
         <Image style={styles.image} source={{uri: location.photoUrl}} />
         <Text style={styles.title}>{location.name}</Text>
         <View style={styles.descriptionRow}>
-          <Text style={styles.descriptionItem}>{location.rating} &#9733;</Text>
-          <Text style={styles.descriptionItem}>{peoples.length} &#9787;</Text>
-          <Text style={styles.descriptionItem}>{formatTime}</Text>
+          <Text style={styles.descriptionItem}>{location.rating} <Text style={styles.icon}>&#9733;</Text></Text>
+          <Text style={styles.descriptionItem}>5 <Text style={styles.icon}>&#9787;</Text></Text>
+          <Text style={styles.descriptionItem}>12:50</Text>
         </View>
       </View>
     )
@@ -77,9 +77,6 @@ export default React.createClass({
 })
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    backgroundColor: '#3494BA'
-  },
   card: {
     flex: 1,
     justifyContent: 'center',
@@ -92,6 +89,7 @@ const styles = StyleSheet.create({
     height: 200
   },
   title: {
+    color: '#EC5512',
     fontSize: 25,
     textAlign: 'center'
   },
@@ -115,10 +113,12 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
+  icon: {
+    color: '#EC5512'
+  },
   buttonText: {
     fontSize: 18,
     color: '#111',
     alignSelf: 'center'
-  },
-
+  }
 })

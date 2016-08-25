@@ -19,14 +19,13 @@ var styles = StyleSheet.create({
     flex: 1,
     padding: 30,
     flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#3494BA'
+    justifyContent: 'center'
   },
   title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    color: '#EC5512'
   },
   subtitle: {
     textAlign: 'center',
@@ -35,7 +34,7 @@ var styles = StyleSheet.create({
   button: {
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: 'red',
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 8,
@@ -43,6 +42,10 @@ var styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  rowItem: {
+    alignSelf: 'center',
+    color: '#EC5512'
   }
 });
 
@@ -69,7 +72,7 @@ class Confirmation extends Component {
     return (
       <View>
         <View style={styles.rowContainer}>
-          <Text> {rowData} </Text>
+          <Text style={styles.rowItem}> {rowData} </Text>
         </View>
       </View>
     )

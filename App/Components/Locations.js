@@ -18,7 +18,6 @@ var styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#3494BA'
   },
   title: {
     marginBottom: 20,

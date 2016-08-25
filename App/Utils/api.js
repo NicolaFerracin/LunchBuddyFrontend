@@ -1,27 +1,51 @@
+'use strict';
+
 var api = {
-  getBio(username) {
-    username = username.toLowerCase().trim();
-    var url = `https://api.github.com/users/${username}`;
-    return fetch(url).then((res) => res.json());
-  },
-  getRepos(username) {
-    username = username.toLowerCase().trim();
-    var url = `https://api.github.com/users/${username}/repos`;
-    return fetch(url).then((res) => res.json());
-  },
-  getNotes(username) {
-    username = username.toLowerCase().trim();
-    var url = `https://github-notes2.firebaseio.com/${username}.json`;
-    return fetch(url).then((res) => res.json);
-  },
-  addNote(username, note) {
-    username = username.toLowerCase().trim();
-    var url = `https://github-notes2.firebaseio.com/${username}.json`;
-    return fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(note)
-    }).then((res) => res.json())
-  }
-};
+    createEvent(timestamp, locationId) {
+        return true;
+    },
+
+    getEventsList(){
+        return [
+            {
+                eventId: 1,
+                locationId: 22
+            },
+            {
+                eventId: 2,
+                locationId: 33
+            },
+            {
+                eventId: 4,
+                locationId: 55
+            },
+        ];
+    },
+
+    getSingleEvent(eventId){
+        return {};
+    },
+
+    getParticipants(eventId){
+        return [
+            {
+                email: 'johndoe@gmail.com',
+                name: 'John Doe'     
+            },
+            {
+                email: 'maxmusterman@gmail.com',
+                name: 'Max Mustermann'
+            }
+        ]
+    },
+
+    addParticipant(email){
+        return true;
+    },
+
+    getLocations() {
+
+    }
+}
 
 module.exports = api;

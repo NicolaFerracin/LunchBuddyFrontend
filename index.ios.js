@@ -27,7 +27,7 @@ var styles = StyleSheet.create({
 
 class LunchBuddy extends Component {
   render() {
-    getPlaceDetails('ChIJn4Ot3QBOqEcRVP6CMFUVhT8');
+    //getPlaceDetails('ChIJn4Ot3QBOqEcRVP6CMFUVhT8');
     return (
       <NavigatorIOS
         navigationBarHidden={true}
@@ -43,12 +43,12 @@ class LunchBuddy extends Component {
   }
 }
 
-function getLocations() {
-  return api.getLocations().then((res)=> console.log(res.results));
-}
-
-function getPlaceDetails(id) {
-  return api.getPlaceDetails(id).then((res)=> console.log(res.result));
-}
+// function getLocations() {
+//   return api.getLocations().then((res)=> console.log(res.results));
+// }
+//
+// function getPlaceDetails(id) {
+//   return api.getPlaceDetails(id).then((res)=> console.log(res.result));
+// }
 
 AppRegistry.registerComponent('LunchBuddy', () => LunchBuddy);

@@ -23,6 +23,7 @@ var api = {
                 .then(location => {event.location = location; return event;})
           }))
       });
+
     },
 
     getSingleEvent(eventId){

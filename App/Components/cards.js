@@ -117,4 +117,5 @@ const styles = StyleSheet.create({
     color: '#111',
     alignSelf: 'center'
   },
+
 })

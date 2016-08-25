@@ -19,13 +19,26 @@ var styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#F87217'
+    // backgroundColor: '#F87217',
+  },
+  bgImageWrapper: {
+    position: 'absolute',
+    top: 0, bottom: 0, left: 0, right: 0
   },
   title: {
     marginBottom: 20,
-    fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    color: '#fff',
+    backgroundColor: 'rgba(0,0,0,0)',
+    fontWeight: 'bold',
+    fontSize: 40,
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    }
   },
   logo: {
     width: 300,
@@ -43,20 +56,23 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: '#111',
+    color: '#fff',
     alignSelf: 'center'
   },
   button: {
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 1,
+    backgroundColor: '#EC5512',
+    // borderColor: 'white',
+    // borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
     marginTop: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  backgroundImage: {
+    flex:1, width: null, height: null, resizeMode:'stretch' 
   }
 });
 
@@ -85,9 +101,12 @@ class Login extends Component{
     var showErr = (
       this.state.error ? <Text>{this.state.error}</Text> : <View></View>
     );
+
     return(
       <View style={styles.mainContainer}>
-        <Image style={styles.logo} source={require('../Images/logo.png')} />
+        <View style={styles.bgImageWrapper}>
+          <Image source={require('../Images/bg.jpeg')} style={styles.backgroundImage}/>
+        </View>
         <Text style={styles.title}>Lunch Buddy</Text>
          <TouchableHighlight
           style={styles.button}

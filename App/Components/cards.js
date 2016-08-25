@@ -38,7 +38,7 @@ let NoMoreCards = React.createClass ({
   render() {
     return (
       <View>
-        <Text>Nobody planned lunch yet, it is up to you!</Text>
+        <Text>You do not like the planned lunch groups?</Text>
         <TouchableHighlight
           style={styles.button}
           onPress={this.showLocations}

@@ -113,7 +113,8 @@ class CreateEvent extends Component{
   createEvent() {
     console.log("creating an event", this.props.event);
     // get locations
-    api.createEvent(this.props.event.id, new Date().getTime()).then((res) => {
+    var now = new Date();
+    api.createEvent(this.props.event.id, now.getTime()).then((res) => {
       if (res.done) {
         console.log("even created succesfully");
         this.props.navigator.push({

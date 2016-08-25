@@ -27,8 +27,7 @@ let NoMoreCards = React.createClass ({
   render() {
     return (
       <View style={styles.mainContainer}>
-        <Text>Nobody lunch planned lunch yet, it's up to you!</Text>
-
+        <Text>Nobody planned lunch yet, it is up to you!</Text>
         <TouchableHighlight
           style={styles.button}
           underlayColor="white">

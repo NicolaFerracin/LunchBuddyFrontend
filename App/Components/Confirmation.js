@@ -30,11 +30,6 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20
   },
-  buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center'
-  },
   button: {
     height: 45,
     flexDirection: 'row',
@@ -66,6 +61,9 @@ class Confirmation extends Component{
       </View>
     )
   }
+  cancel() {
+    this.props.navigator.pop();
+  }
   render() {
     return(
       <View style={styles.mainContainer}>
@@ -78,7 +76,10 @@ class Confirmation extends Component{
             dataSource={this.state.dataSource}
             renderRow={this.renderRow} />
         <TouchableHighlight
-          style={styles.buttonText} />
+          style={styles.button}
+          onPress={this.cancel.bind(this)}>
+          <Text>Cancel</Text>
+        </TouchableHighlight>
       </View>
     )
   }

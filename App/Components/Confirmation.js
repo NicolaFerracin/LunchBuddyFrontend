@@ -51,7 +51,7 @@ class Confirmation extends Component{
   render() {
     return(
       <View style={styles.mainContainer}>
-        <Text>{this.props.event.name}</Text>
+        <Text>{this.props.event.location.name}</Text>
       </View>
     )
   }

@@ -3,14 +3,17 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 
 import SwipeCards from 'react-native-swipe-cards';
 
+import Confirmation from './Confirmation';
+
 let Card = React.createClass({
   render() {
+    var location = this.props.location
     return (
       <View style={[styles.card]}>
-        <Image style={styles.image} source={{uri: this.props.photoUrl}} />
-        <Text style={styles.title}>{this.props.name}</Text>
+        <Image style={styles.image} source={{uri: location.photoUrl}} />
+        <Text style={styles.title}>{location.name}</Text>
         <View style={styles.descriptionRow}>
-          <Text style={styles.descriptionItem}>{this.props.rating} &#9733;</Text>
+          <Text style={styles.descriptionItem}>{location.rating} &#9733;</Text>
           <Text style={styles.descriptionItem}>5 &#9787;</Text>
           <Text style={styles.descriptionItem}>12:50</Text>
         </View>
@@ -28,21 +31,22 @@ let NoMoreCards = React.createClass ({
 
 export default React.createClass({
   handleNope (card) {
-    console.log(`Nope for ${card.name}`)
+    console.log(`Nope for ${card.location.name}`)
   },
   onYes(card) {
-    console.log(`Yup for ${card.name}`)
+    console.log(`Yup for ${card.location.name}`)
+    console.log(this.props)
     this.props.navigator.push({
         component: Confirmation,
-        passProps: {event: card}
+        passProps: { event: card }
       })
   },
   render() {
     return (
       <SwipeCards
-        cards={this.props.events.map((event, index) => event.location)}
+        cards={this.props.events.map((event, index) => event)}
         style={styles.mainContainer}
-        renderCard={(cardData) => <Card {...cardData} />}
+        renderCard={(cardData) => <Card {...cardData}/>}
         renderNoMoreCards={() => <NoMoreCards />}
         handleYup={this.onYes}
         handleNope={this.handleNope}
@@ -53,7 +57,7 @@ export default React.createClass({
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: '#F87217'
+    backgroundColor: '#3494BA'
   },
   card: {
     flex: 1,

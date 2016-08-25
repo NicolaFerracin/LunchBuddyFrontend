@@ -6,7 +6,7 @@ import {
   TextInput,
   Image,
   TouchableHighlight,
-  ActivityIndicatorIOS,
+  ActivityIndicator,
   ListView
 } from 'react-native';
 

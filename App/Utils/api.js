@@ -7,9 +7,7 @@ var api = {
         if (timestamp) {
             timestamp = new Date()
         }
-
         var url = baseUrl + placeId + '/' + timestamp.getTime();
-
         return fetch(url, { method: 'post' }).then((res) => res.json());
     },
 
@@ -57,7 +55,7 @@ var api = {
         var url = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=' + placeId + '&key=AIzaSyBpsOHDBY0pAT91wUyfVr2hKk0rAylT9fI';
         return fetch(url, { method: 'get' }).then((res) => res.json()).then(r => r.result).then(r => {
             r.photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${r.photos[0].photo_reference}&sensor=false&key=AIzaSyBpsOHDBY0pAT91wUyfVr2hKk0rAylT9fI`
-            return r
+          return r;
           }
         );
     },

@@ -66,7 +66,6 @@ export default React.createClass({
     return (
       <SwipeCards
         cards={this.props.events.map((event, index) => event)}
-        // cards={[]}
         style={styles.mainContainer}
         renderCard={(cardData) => <Card {...cardData}/>}
         renderNoMoreCards={() => <NoMoreCards navigator={this.props.navigator} />}
@@ -121,4 +120,5 @@ const styles = StyleSheet.create({
     color: '#111',
     alignSelf: 'center'
   },
+
 })

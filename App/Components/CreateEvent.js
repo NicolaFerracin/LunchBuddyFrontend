@@ -7,7 +7,8 @@ import {
   Image,
   TouchableHighlight,
   ActivityIndicator,
-  ListView
+  ListView,
+  DatePickerIOS
 } from 'react-native';
 
 var api = require('../Utils/api')
@@ -81,6 +82,20 @@ var styles = StyleSheet.create({
 });
 
 class CreateEvent extends Component{
+
+  static defaultProps = {
+    date: new Date()
+  };
+
+  state = {
+    date: this.props.date
+  };
+
+  onDateChange = (date) => {
+    this.setState({date: date});
+  };
+
+
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
@@ -94,6 +109,8 @@ class CreateEvent extends Component{
   handleSelectPlace(rowData) {
     console.log(rowData)
   }
+  createEvent() {
+  }
 
   render() {
     var showErr = (
@@ -101,27 +118,20 @@ class CreateEvent extends Component{
     );
     return(
       <View style={styles.mainContainer}>
-        <Text style={styles.buttonText}>CreateEvent</Text>
-        <Text style={styles.subtitle}>Places nearby:</Text>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) =>
-            (
-                <TouchableHighlight onPress={this.handleSelectPlace(rowData)}>
-                    <View style={styles.row}>
-                        <Text style={styles.rowText}>{rowData.name}</Text>
-                        <Text style={styles.rowSubText}>{rowData.vicinity}</Text>
-                    </View>
-                </TouchableHighlight>
-            )
-          }
+        <Text style={styles.subtitle}>Today it is:</Text>
+        <Text style={styles.title}>{this.props.event.name}</Text>
+        <Text style={styles.subtitle}>Set a time:</Text>
+        <DatePickerIOS
+          date={this.props.date}
+          mode="time"
+          onDateChange={this.onDateChange}
+          minuteInterval={10}
         />
-        <ActivityIndicator
-          animating={this.state.isLoading}
-          color="#111"
-          size="large">
-        </ActivityIndicator>
-        {showErr}
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.createEvent.bind(this)}>
+          <Text>Create event</Text>
+        </TouchableHighlight>
       </View>
     )
   }

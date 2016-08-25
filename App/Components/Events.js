@@ -66,7 +66,7 @@ class Events extends Component{
     console.log('events', this.state.events)
     return(
       <View style={styles.mainContainer}>
-        <Text style={styles.title}>Find a lunch!</Text>
+        <Text style={styles.title}>Choose an event!</Text>
         <ActivityIndicator
           animating={this.state.isLoading}
           color="#111"

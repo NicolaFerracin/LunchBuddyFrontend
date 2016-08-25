@@ -29,6 +29,7 @@ var api = {
                 })
           }))
       });
+
     },
 
     getSingleEvent(eventId){

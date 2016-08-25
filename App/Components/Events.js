@@ -56,6 +56,7 @@ class Events extends Component{
     console.log('evetns', this.props.events)
     return(
       <View style={styles.mainContainer}>
+        <Text style={styles.title}>Find a lunch!</Text>
         <Cards events={this.state.events} navigator={this.props.navigator}/>
       </View>
     )

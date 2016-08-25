@@ -70,16 +70,10 @@ class Login extends Component{
   }
   handleLogin() {
     console.log('Logging in');
-    this.setState({
-      isLoading: true
-    });
-    // get events
-    api.getEventsList().then((res) => {
-      this.props.navigator.push({
-          component: Events,
-          passProps: {events: res}
-        })
-    }).catch((e) => console.error(e));
+    this.props.navigator.push({
+        component: Events,
+        id: 'events'
+      })
   }
   render() {
     var showErr = (

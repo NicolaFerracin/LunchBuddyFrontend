@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 var api = require('../Utils/api')
+var Events = require('./Events')
 
 var styles = StyleSheet.create({
   mainContainer: {

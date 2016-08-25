@@ -45,11 +45,11 @@ export default React.createClass({
   },
   onYes(card) {
     console.log(`Yup for ${card.location.name}`)
-    console.log(this.props)
     this.props.navigator.push({
         component: Confirmation,
         passProps: { event: card }
       })
+    return;
   },
   render() {
     return (

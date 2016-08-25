@@ -46,17 +46,32 @@ var styles = StyleSheet.create({
 });
 
 class Events extends Component{
+  componentWillMount() {
+    this.setState({
+      isLoading: true,
+      events: []
+    });
+    // get events
+    api.getEventsList().then((res) => {
+      this.setState({
+        isLoading: false,
+        events: res
+      });
+    }).catch((e) => console.error(e));
+  }
   constructor(props) {
     super(props);
-    this.state = {
-      events: this.props.events
-    }
   }
   render() {
-    console.log('evetns', this.props.events)
+    console.log('events', this.state.events)
     return(
       <View style={styles.mainContainer}>
         <Text style={styles.title}>Find a lunch!</Text>
+        <ActivityIndicatorIOS
+          animating={this.state.isLoading}
+          color="#111"
+          size="large">
+        </ActivityIndicatorIOS>
         <Cards events={this.state.events} navigator={this.props.navigator}/>
       </View>
     )

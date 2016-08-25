@@ -6,11 +6,10 @@ import {
   TextInput,
   Image,
   TouchableHighlight,
-  ActivityIndicatorIOS
+  ActivityIndicatorIOS,
+  ListView
 } from 'react-native';
 
-var Events = require('./Events')
-var CreateEvent = require('./CreateEvent')
 var api = require('../Utils/api')
 
 var styles = StyleSheet.create({
@@ -57,48 +56,67 @@ var styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 10,
+    backgroundColor: '#F6F6F6',
+    borderTopWidth: 1,
+    borderTopWidth: 2,
+    borderColor: '#DCDCDC'
+  },
+  thumb: {
+    width: 64,
+    height: 64,
+  },
+  rowText: {
+    flex: 2,
+    fontSize: 18,
+  },
+  rowSubText: {
+     flex: 1,
+    fontSize: 12,
   }
 });
 
-class Login extends Component{
+class CreateEvent extends Component{
   constructor(props) {
     super(props);
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       isLoading: false,
-      error: false
+      error: false,
+      dataSource: ds.cloneWithRows(this.props.userInfo)
     }
   }
-  handleLogin() {
-    console.log('Logging in');
-    this.setState({
-      isLoading: true
-    });
-    // get events
-    api.getLocations().then((res) => {
-      this.props.navigator.push({
-          component: Events,
-          passProps: {userInfo: res.results}
-        });
-        this.setState({
-          isLoading: false,
-          error: false
-        })
-      }).catch((e) => console.error(e));
-    }
+  
+  handleSelectPlace(rowData) {
+    console.log(rowData)
+  }
+
   render() {
     var showErr = (
       this.state.error ? <Text>{this.state.error}</Text> : <View></View>
     );
+
     return(
       <View style={styles.mainContainer}>
-        <Image style={styles.logo} source={require('../Images/logo.png')} />
-        <Text style={styles.title}>Lunch Buddy</Text>
-         <TouchableHighlight
-          style={styles.button}
-          onPress={this.handleLogin.bind(this)}
-          underlayColor="white">
-          <Text style={styles.buttonText}>Login with Google</Text>
-        </TouchableHighlight>
+        <Text style={styles.buttonText}>CreateEvent</Text>
+        <Text style={styles.subtitle}>Places nearby:</Text>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => 
+            (   
+                <TouchableHighlight onPress={this.handleSelectPlace(rowData)}>
+                    <View style={styles.row}>
+                        <Text style={styles.rowText}>{rowData.name}</Text>
+                        <Text style={styles.rowSubText}>{rowData.vicinity}</Text>
+                    </View>
+                </TouchableHighlight>
+            )
+          }
+        />
         <ActivityIndicatorIOS
           animating={this.state.isLoading}
           color="#111"
@@ -110,4 +128,4 @@ class Login extends Component{
   }
 };
 
-module.exports = Login;
+module.exports = CreateEvent;

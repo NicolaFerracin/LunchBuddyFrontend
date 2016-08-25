@@ -74,17 +74,13 @@ class Login extends Component{
       isLoading: true
     });
     // get events
-    api.getLocations().then((res) => {
+    api.getEventsList().then((res) => {
       this.props.navigator.push({
           component: Events,
-          passProps: {userInfo: res.results}
-        });
-        this.setState({
-          isLoading: false,
-          error: false
+          passProps: {events: res}
         })
-      }).catch((e) => console.error(e));
-    }
+    }).catch((e) => console.error(e));
+  }
   render() {
     var showErr = (
       this.state.error ? <Text>{this.state.error}</Text> : <View></View>

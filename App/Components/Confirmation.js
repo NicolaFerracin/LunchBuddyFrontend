@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 var api = require('../Utils/api')
-import Cards from './cards';
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -45,21 +44,17 @@ var styles = StyleSheet.create({
   }
 });
 
-class Events extends Component{
+class Confirmation extends Component{
   constructor(props) {
     super(props);
-    this.state = {
-      events: this.props.events
-    }
   }
   render() {
-    console.log('evetns', this.props.events)
     return(
       <View style={styles.mainContainer}>
-        <Cards events={this.state.events}/>
+        <Text>{this.props.event.name}</Text>
       </View>
     )
   }
 };
 
-module.exports = Events;
+module.exports = Confirmation;

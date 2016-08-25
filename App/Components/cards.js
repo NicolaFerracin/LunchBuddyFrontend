@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableHighlight} from 'react-native';
 
 import SwipeCards from 'react-native-swipe-cards';
 
@@ -25,7 +25,18 @@ let Card = React.createClass({
 
 let NoMoreCards = React.createClass ({
   render() {
-    return <Text>No more events! :(</Text>
+    return (
+      <View style={styles.mainContainer}>
+        <Text>Nobody lunch planned lunch yet, it's up to you!</Text>
+
+        <TouchableHighlight
+          style={styles.button}
+          underlayColor="white">
+          <Text style={styles.buttonText}>Plan lunch</Text>
+        </TouchableHighlight>
+      </View>
+    )
+
   }
 })
 

@@ -89,11 +89,6 @@ class Login extends Component{
           underlayColor="white">
           <Text style={styles.buttonText}>Login with Google</Text>
         </TouchableHighlight>
-        <ActivityIndicator
-          animating={this.state.isLoading}
-          color="#111"
-          size="large">
-        </ActivityIndicator>
         {showErr}
       </View>
     )

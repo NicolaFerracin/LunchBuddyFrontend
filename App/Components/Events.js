@@ -6,7 +6,7 @@ import {
   TextInput,
   Image,
   TouchableHighlight,
-  ActivityIndicatorIOS
+  ActivityIndicator
 } from 'react-native';
 
 var api = require('../Utils/api')
@@ -67,11 +67,11 @@ class Events extends Component{
     return(
       <View style={styles.mainContainer}>
         <Text style={styles.title}>Find a lunch!</Text>
-        <ActivityIndicatorIOS
+        <ActivityIndicator
           animating={this.state.isLoading}
           color="#111"
           size="large">
-        </ActivityIndicatorIOS>
+        </ActivityIndicator>
         <Cards events={this.state.events} navigator={this.props.navigator}/>
       </View>
     )

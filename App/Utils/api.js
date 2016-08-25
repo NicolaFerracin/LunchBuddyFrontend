@@ -4,10 +4,11 @@ var baseUrl = 'https://lunchbuddyrasinhackathon-zawuza.rhcloud.com/events';
 
 var api = {
     createEvent(placeId, timestamp) {
-        if (timestamp) {
-            timestamp = new Date()
+        if (!timestamp) {
+            timestamp = new Date();
+            timestamp = timestamp.getTime();
         }
-        var url = baseUrl + '/' + placeId + '/' + timestamp.getTime();
+        var url = baseUrl + '/' + placeId + '/' + timestamp;
         return fetch(url, { method: 'post' }).then((res) => res.json());
     },
 

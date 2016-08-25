@@ -115,12 +115,9 @@ class CreateEvent extends Component{
     // get locations
     var now = new Date();
     api.createEvent(this.props.event.id, now.getTime()).then((res) => {
-      if (res.done) {
-        console.log("even created succesfully");
-        this.props.navigator.push({
-          component: Events
-        })
-      }
+      this.props.navigator.push({
+        component: Events
+      })
     }).catch((e) => console.error('error', e));
   }
 

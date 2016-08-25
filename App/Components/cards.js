@@ -6,28 +6,14 @@ import SwipeCards from 'react-native-swipe-cards';
 let Card = React.createClass({
   render() {
     return (
-      <View style={[styles.card, {backgroundColor: this.props.backgroundColor}]}>
-        <Text>{this.props.text}</Text>
+      <View style={[styles.card]}>
+        <Text>{this.props.name}</Text>
       </View>
     )
   }
 })
 
-const Cards = [
-  {text: 'Tomato', backgroundColor: 'red'},
-  {text: 'Aubergine', backgroundColor: 'purple'},
-  {text: 'Courgette', backgroundColor: 'green'},
-  {text: 'Blueberry', backgroundColor: 'blue'},
-  {text: 'Umm...', backgroundColor: 'cyan'},
-  {text: 'orange', backgroundColor: 'orange'},
-]
-
 export default React.createClass({
-  getInitialState() {
-    return {
-      cards: Cards
-    }
-  },
   handleYup (card) {
     console.log(`Yup for ${card.text}`)
   },
@@ -37,8 +23,8 @@ export default React.createClass({
   render() {
     return (
       <SwipeCards
-        cards={this.state.cards}
-
+        cards={this.props.events.map((event, index) => event.location)}
+        style={styles.mainContainer}
         renderCard={(cardData) => <Card {...cardData} />}
         renderNoMoreCards={() => <NoMoreCards />}
 
@@ -50,11 +36,14 @@ export default React.createClass({
 })
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    backgroundColor: '#F87217'
+  },
   card: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     width: 300,
-    height: 300,
+    height: 300
   }
 })

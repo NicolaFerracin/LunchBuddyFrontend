@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 var api = require('../Utils/api')
+import Cards from './cards';
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -24,20 +25,6 @@ var styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
     color: '#fff'
-  },
-  logo: {
-    width: 300,
-    height: 300
-  },
-  searchInput: {
-    height: 50,
-    padding: 4,
-    marginRight: 5,
-    fontSize: 23,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 8,
-    color: 'white'
   },
   buttonText: {
     fontSize: 18,
@@ -62,47 +49,14 @@ class Events extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false,
-      error: false
+      events: this.props.events
     }
   }
-  handleLogin() {
-    console.log('Logging in');
-    this.setState({
-      isLoading: true
-    });
-    // get events
-    api.getEvents().then((res) => {
-      this.props.navigator.push({
-          component: Dashboard,
-          passProps: {userInfo: res}
-        });
-        this.setState({
-          isLoading: false,
-          error: false
-        })
-      }).catch((e) => console.error(e));
-    }
   render() {
-    var showErr = (
-      this.state.error ? <Text>{this.state.error}</Text> : <View></View>
-    );
+    console.log('evetns', this.props.events)
     return(
       <View style={styles.mainContainer}>
-        <Image style={styles.logo} source={require('../Images/logo.png')} />
-        <Text style={styles.title}>Lunch Buddy</Text>
-         <TouchableHighlight
-          style={styles.button}
-          onPress={this.handleLogin.bind(this)}
-          underlayColor="white">
-          <Text style={styles.buttonText}>Login with Google</Text>
-        </TouchableHighlight>
-        <ActivityIndicatorIOS
-          animating={this.state.isLoading}
-          color="#111"
-          size="large">
-        </ActivityIndicatorIOS>
-        {showErr}
+        <Cards events={this.state.events}/>
       </View>
     )
   }

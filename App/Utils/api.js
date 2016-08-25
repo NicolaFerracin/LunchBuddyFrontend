@@ -48,6 +48,12 @@ var api = {
         return fetch(url, { method: 'post' }).then((res) => res.json());
     },
 
+    createParticipant(email, name){
+        var url = 'https://lunchbuddyrasinhackathon-zawuza.rhcloud.com/people' + '/' + email + '/' + name;
+
+        return fetch(url, { method: 'post' }).then((res) => res.json());
+    },
+
     getLocations() {
         var location = '52.5325360, 13.4240680';
         var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=52.5325360,%2013.4240680&radius=2000&type=restaurant&key=AIzaSyBpsOHDBY0pAT91wUyfVr2hKk0rAylT9fI';

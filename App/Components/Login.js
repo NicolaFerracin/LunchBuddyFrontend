@@ -40,6 +40,18 @@ var styles = StyleSheet.create({
       width: 0
     }
   },
+  label: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    },
+    color: '#fff',
+    marginBottom: 10
+  },
   logo: {
     width: 300,
     height: 300
@@ -73,6 +85,13 @@ var styles = StyleSheet.create({
   },
   backgroundImage: {
     flex:1, width: null, height: null, resizeMode:'stretch'
+  },
+  input: {
+    backgroundColor: 'rgba(255,255,255, 0.5)',
+    height: 40, 
+    borderColor: '#fff', 
+    borderWidth: 1,
+    borderRadius: 8
   }
 });
 
@@ -86,11 +105,23 @@ class Login extends Component{
   }
   handleLogin() {
     console.log('Logging in');
-    this.props.navigator.push({
+    console.log(this.state)
+    api.createParticipant(this.state.email.text, this.state.name.text).then((res)=>{
+      this.props.navigator.push({
         component: Events,
         id: 'events'
       })
+    }
+    )
   }
+  handleEmailChange(value) {
+      this.state.email = value
+  }
+
+  handleNameChange(value) {
+      this.state.name = value
+  }
+
   render() {
     var showErr = (
       this.state.error ? <Text>{this.state.error}</Text> : <View></View>
@@ -102,11 +133,23 @@ class Login extends Component{
           <Image source={require('../Images/bg.jpg')} style={styles.backgroundImage}/>
         </View>
         <Text style={styles.title}>Bello</Text>
+        <Text style={styles.label}>Email:</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => this.handleEmailChange({text})}
+          value={this.state.text}
+        />
+        <Text style={styles.label}>Name:</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => this.handleNameChange({text})}
+          value={this.state.text}
+        />
          <TouchableHighlight
           style={styles.button}
           onPress={this.handleLogin.bind(this)}
           underlayColor="white">
-          <Text style={styles.buttonText}>Login with Google</Text>
+          <Text style={styles.buttonText}>Login</Text>
         </TouchableHighlight>
         {showErr}
       </View>

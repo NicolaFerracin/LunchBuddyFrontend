@@ -109,7 +109,13 @@ class Login extends Component{
     api.createParticipant(this.state.email.text, this.state.name.text).then((res)=>{
       this.props.navigator.push({
         component: Events,
-        id: 'events'
+        id: 'events',
+        passProps: {
+          user :{
+            name: this.state.name.text,
+            email: this.state.email.text
+          }
+        }
       })
     }
     )

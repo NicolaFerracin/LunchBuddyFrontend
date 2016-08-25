@@ -66,7 +66,7 @@ class Events extends Component{
     console.log('events', this.state.events)
     return(
       <View style={styles.mainContainer}>
-        <Text style={styles.title}>Choose an event!</Text>
+        <Text style={styles.title}>Choose an event, {this.props.user.name}!</Text>
         <ActivityIndicator
           animating={this.state.isLoading}
           color="#111"

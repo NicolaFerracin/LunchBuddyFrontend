@@ -1,16 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableHighlight} from 'react-native';
 
 import SwipeCards from 'react-native-swipe-cards';
 
+import Confirmation from './Confirmation';
+
 let Card = React.createClass({
   render() {
+    var location = this.props.location
     return (
       <View style={[styles.card]}>
-        <Image style={styles.image} source={{uri: this.props.photoUrl}} />
-        <Text style={styles.title}>{this.props.name}</Text>
+        <Image style={styles.image} source={{uri: location.photoUrl}} />
+        <Text style={styles.title}>{location.name}</Text>
         <View style={styles.descriptionRow}>
-          <Text style={styles.descriptionItem}>{this.props.rating} &#9733;</Text>
+          <Text style={styles.descriptionItem}>{location.rating} &#9733;</Text>
           <Text style={styles.descriptionItem}>5 &#9787;</Text>
           <Text style={styles.descriptionItem}>12:50</Text>
         </View>
@@ -22,27 +25,37 @@ let Card = React.createClass({
 
 let NoMoreCards = React.createClass ({
   render() {
-    return <Text>No more events! :(</Text>
+    return (
+      <View>
+        <Text>Nobody planned lunch yet, it is up to you!</Text>
+        <TouchableHighlight
+          style={styles.button}>
+          <Text style={styles.buttonText}>Plan lunch</Text>
+        </TouchableHighlight>
+      </View>
+    )
+
   }
 })
 
 export default React.createClass({
   handleNope (card) {
-    console.log(`Nope for ${card.name}`)
+    console.log(`Nope for ${card.location.name}`)
   },
   onYes(card) {
-    console.log(`Yup for ${card.name}`)
+    console.log(`Yup for ${card.location.name}`)
     this.props.navigator.push({
         component: Confirmation,
-        passProps: {event: card}
+        passProps: { event: card }
       })
+    return;
   },
   render() {
     return (
       <SwipeCards
-        cards={this.props.events.map((event, index) => event.location)}
+        cards={this.props.events.map((event, index) => event)}
         style={styles.mainContainer}
-        renderCard={(cardData) => <Card {...cardData} />}
+        renderCard={(cardData) => <Card {...cardData}/>}
         renderNoMoreCards={() => <NoMoreCards />}
         handleYup={this.onYes}
         handleNope={this.handleNope}
@@ -53,7 +66,7 @@ export default React.createClass({
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: '#F87217'
+    backgroundColor: '#3494BA'
   },
   card: {
     flex: 1,
@@ -77,5 +90,22 @@ const styles = StyleSheet.create({
   descriptionItem: {
     fontSize: 20,
     padding: 10
-  }
+  },
+  button: {
+    height: 45,
+    flexDirection: 'row',
+    backgroundColor: 'red',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: '#111',
+    alignSelf: 'center'
+  },
 })

@@ -6,10 +6,12 @@ import {
   TextInput,
   Image,
   TouchableHighlight,
+  ListView,
   ActivityIndicatorIOS
 } from 'react-native';
 
 var api = require('../Utils/api')
+var Events = require('./Events')
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -17,7 +19,7 @@ var styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#F87217'
+    backgroundColor: '#3494BA'
   },
   title: {
     marginBottom: 20,
@@ -25,10 +27,9 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff'
   },
-  buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center'
+  subtitle: {
+    textAlign: 'center',
+    fontSize: 20
   },
   button: {
     height: 45,
@@ -47,11 +48,39 @@ var styles = StyleSheet.create({
 class Confirmation extends Component{
   constructor(props) {
     super(props);
+    this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
+    this.state = {
+      dataSource: this.ds.cloneWithRows(['Carlos', 'Maria', 'Jorge', 'Adrian', 'Raquel'])
+      }
+    }
+  renderRow(rowData){
+    return (
+      <View>
+        <View style={styles.rowContainer}>
+          <Text> {rowData} </Text>
+        </View>
+      </View>
+    )
+  }
+  cancel() {
+    this.props.navigator.pop();
   }
   render() {
     return(
       <View style={styles.mainContainer}>
-        <Text>{this.props.event.name}</Text>
+        <Text style={styles.subtitle}>Today it is:</Text>
+        <Text style={styles.title}>{this.props.event.location.name}</Text>
+        <Text style={styles.title}>12:50</Text>
+        <Text style={styles.subtitle}>Your Lunch Buddies</Text>
+        <ListView
+            enableEmptySections={true}
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow} />
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.cancel.bind(this)}>
+          <Text>Cancel</Text>
+        </TouchableHighlight>
       </View>
     )
   }

@@ -6,7 +6,7 @@ import {
   TextInput,
   Image,
   TouchableHighlight,
-  ActivityIndicatorIOS
+  ActivityIndicator
 } from 'react-native';
 
 var api = require('../Utils/api')
@@ -18,7 +18,7 @@ var styles = StyleSheet.create({
     padding: 30,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#F87217'
+    backgroundColor: '#3494BA'
   },
   title: {
     marginBottom: 20,
@@ -46,17 +46,33 @@ var styles = StyleSheet.create({
 });
 
 class Events extends Component{
+  componentWillMount() {
+    this.setState({
+      isLoading: true,
+      events: []
+    });
+    // get events
+    api.getEventsList().then((res) => {
+      this.setState({
+        isLoading: false,
+        events: res
+      });
+    }).catch((e) => console.error(e));
+  }
   constructor(props) {
     super(props);
-    this.state = {
-      events: this.props.events
-    }
   }
   render() {
-    console.log('evetns', this.props.events)
+    console.log('events', this.state.events)
     return(
       <View style={styles.mainContainer}>
-        <Cards events={this.state.events}/>
+        <Text style={styles.title}>Find a lunch!</Text>
+        <ActivityIndicator
+          animating={this.state.isLoading}
+          color="#111"
+          size="large">
+        </ActivityIndicator>
+        <Cards events={this.state.events} navigator={this.props.navigator}/>
       </View>
     )
   }
